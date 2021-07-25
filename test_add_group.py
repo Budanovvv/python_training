@@ -25,7 +25,7 @@ class TestAddGroup(unittest.TestCase):
 
     def create_group(self, group):
         wd = self.wd
-        self.open_group_page(wd)
+        self.open_group_page()
         # Init group creation
         wd.find_element_by_name("new").click()
         # Fill group
