@@ -3,28 +3,28 @@ from selenium import webdriver
 from group import Group
 import unittest
 
+
 class TestAddGroup(unittest.TestCase):
     def setUp(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
     def test_add_group(self):
-        wd = self.wd
-        self.Login(wd, user_name="admin", password="secret")
-        self.create_group(wd, Group(name="ertjshrtbs", header="aetherthb", footer="thrrthwrt"))
-        self.logout(wd)
-
+        self.Login(user_name="admin", password="secret")
+        self.create_group(Group(name="ertjshrtbs", header="aetherthb", footer="thrrthwrt"))
+        self.logout()
 
     def test_add_empty_group(self):
-        wd = self.wd
-        self.Login(wd, user_name="admin", password="secret")
-        self.create_group(wd, Group(name="", header="", footer=""))
-        self.logout(wd)
+        self.Login(user_name="admin", password="secret")
+        self.create_group(Group(name="", header="", footer=""))
+        self.logout()
 
-    def logout(self, wd):
+    def logout(self):
+        wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
-    def create_group(self, wd, group):
+    def create_group(self, group):
+        wd = self.wd
         self.open_group_page(wd)
         # Init group creation
         wd.find_element_by_name("new").click()
@@ -41,11 +41,13 @@ class TestAddGroup(unittest.TestCase):
         # Submit group creation
         wd.find_element_by_name("submit").click()
 
-    def open_group_page(self, wd):
+    def open_group_page(self):
+        wd = self.wd
         wd.find_element_by_link_text("groups").click()
 
-    def Login(self, wd, user_name, password):
-        self.open_home_page(wd)
+    def Login(self, user_name, password):
+        wd = self.wd
+        self.open_home_page()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(user_name)
         wd.find_element_by_name("pass").click()
@@ -53,11 +55,13 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-    def open_home_page(self, wd):
+    def open_home_page(self):
+        wd = self.wd
         wd.get("http://localhost/addressbook/index.php")
 
     def tearDown(self):
         self.wd.quit()
+
 
 if __name__ == "__main__":
     unittest.main()
