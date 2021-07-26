@@ -12,7 +12,10 @@ class TestAddGroup(unittest.TestCase):
     def test_add_contact(self):
         self.login(user="admin", password="secret")
         self.init_contact_creation()
-        self.fill_contact_names(Contact(firstname="Some name", middlename="Some midle name", lastname="Some last name", nickname="Валентин"))
+        self.fill_contact_names(Contact(firstname="Some name",
+                                        middlename="Some middle name",
+                                        lastname="Some last name",
+                                        nickname="Валентин"))
         self.fill_contact_title_compname_address()
         self.fill_contact_phones()
         self.fill_contact_emails()
@@ -23,7 +26,10 @@ class TestAddGroup(unittest.TestCase):
     def test_add_empty_contact(self):
         self.login(user="admin", password="secret")
         self.init_contact_creation()
-        self.fill_contact_names(Contact(firstname="", middlename="", lastname="", nickname=""))
+        self.fill_contact_names(Contact(firstname="",
+                                        middlename="",
+                                        lastname="",
+                                        nickname=""))
         self.fill_contact_title_compname_address()
         self.fill_contact_phones()
         self.fill_contact_emails()
