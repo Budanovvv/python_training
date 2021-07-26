@@ -6,3 +6,10 @@ class Contact:
         self.lastname = lastname
         self.nickname = nickname
 
+
+class Email:
+
+    def __init__(self, first, second, third):
+        self.first = first
+        self.second = second
+        self.third = third

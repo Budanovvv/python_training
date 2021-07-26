@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 from contact import Contact
+from contact import Email
 import unittest
 
 
@@ -18,7 +19,9 @@ class TestAddGroup(unittest.TestCase):
                                         nickname="Валентин"))
         self.fill_contact_title_compname_address()
         self.fill_contact_phones()
-        self.fill_contact_emails()
+        self.fill_contact_emails(Email(first="1111@example.com",
+                                       second="22222@example.com",
+                                       third="33333@example.com"))
         self.fill_contact_homepage()
         self.submit_new_contact()
         self.logout()
@@ -32,7 +35,9 @@ class TestAddGroup(unittest.TestCase):
                                         nickname=""))
         self.fill_contact_title_compname_address()
         self.fill_contact_phones()
-        self.fill_contact_emails()
+        self.fill_contact_emails(Email(first="1111@example.com",
+                                       second="22222@example.com",
+                                       third="33333@example.com"))
         self.fill_contact_homepage()
         self.submit_new_contact()
         self.logout()
@@ -54,17 +59,17 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("homepage").send_keys("example.com")
         wd.find_element_by_name("theform").click()
 
-    def fill_contact_emails(self):
+    def fill_contact_emails(self, email):
         wd = self.wd
         # Fill in contact emails and homepage
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").send_keys("1111@example.com")
+        wd.find_element_by_name("email").send_keys(email.first)
         wd.find_element_by_name("email2").click()
-        wd.find_element_by_name("email2").send_keys("22222@example.com")
+        wd.find_element_by_name("email2").send_keys(email.second)
         wd.find_element_by_name("email3").click()
-        wd.find_element_by_name("email3").send_keys("33333@example.com")
+        wd.find_element_by_name("email3").send_keys(email.third)
         wd.find_element_by_name("homepage").click()
 
     def fill_contact_phones(self):
