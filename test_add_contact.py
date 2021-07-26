@@ -54,41 +54,30 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys("1111@example.com")
         wd.find_element_by_name("email2").click()
-        wd.find_element_by_name("email2").clear()
         wd.find_element_by_name("email2").send_keys("22222@example.com")
         wd.find_element_by_name("email3").click()
-        wd.find_element_by_name("email3").clear()
         wd.find_element_by_name("email3").send_keys("33333@example.com")
         wd.find_element_by_name("homepage").click()
-        wd.find_element_by_name("homepage").clear()
 
     def fill_contact_phones(self):
         wd = self.wd
         # Fill in contact phones
         wd.find_element_by_name("home").click()
-        wd.find_element_by_name("home").clear()
         wd.find_element_by_name("home").send_keys("2345678")
         wd.find_element_by_name("mobile").click()
-        wd.find_element_by_name("mobile").clear()
         wd.find_element_by_name("mobile").send_keys("98765432")
-        wd.find_element_by_name("work").click()
-        wd.find_element_by_name("work").clear()
         wd.find_element_by_name("work").send_keys("123456")
         wd.find_element_by_name("fax").click()
-        wd.find_element_by_name("fax").clear()
         wd.find_element_by_name("fax").send_keys("234567")
 
     def fill_contact_title_compname_address(self):
         wd = self.wd
         # Fill in title, company name, address
         wd.find_element_by_name("title").click()
-        wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys("1111")
         wd.find_element_by_name("company").click()
-        wd.find_element_by_name("company").clear()
         wd.find_element_by_name("company").send_keys("BWR")
         wd.find_element_by_name("address").click()
 
@@ -96,16 +85,12 @@ class TestAddGroup(unittest.TestCase):
         wd = self.wd
         # Fill in full name and nickname
         wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
         wd.find_element_by_name("middlename").click()
-        wd.find_element_by_name("middlename").clear()
         wd.find_element_by_name("middlename").send_keys(contact.middlename)
         wd.find_element_by_name("lastname").click()
-        wd.find_element_by_name("lastname").clear()
         wd.find_element_by_name("lastname").send_keys(contact.lastname)
         wd.find_element_by_name("nickname").click()
-        wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys(contact.nickname)
 
     def init_contact_creation(self):
@@ -117,10 +102,8 @@ class TestAddGroup(unittest.TestCase):
         wd = self.wd
         # Login
         wd.get("http://localhost/addressbook/edit.php")
-        wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(user)
         wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
