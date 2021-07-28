@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
 from contact import Contact
-from contact import Email
 import unittest
 
 
@@ -13,15 +13,16 @@ class TestAddGroup(unittest.TestCase):
     def test_add_contact(self):
         self.login(user="admin", password="secret")
         self.init_contact_creation()
+        Select(self.wd.find_element_by_name("bday")).select_by_visible_text("1")
         self.fill_contact_names(Contact(firstname="Some name",
                                         middlename="Some middle name",
                                         lastname="Some last name",
                                         nickname="Валентин"))
         self.fill_contact_title_compname_address()
         self.fill_contact_phones()
-        self.fill_contact_emails(Email(first="1111@example.com",
-                                       second="22222@example.com",
-                                       third="33333@example.com"))
+        self.fill_contact_emails(Contact(first_email="1111@example.com",
+                                         second_email="22222@example.com",
+                                         third_email="33333@example.com"))
         self.fill_contact_homepage()
         self.submit_new_contact()
         self.logout()
@@ -35,9 +36,9 @@ class TestAddGroup(unittest.TestCase):
                                         nickname=""))
         self.fill_contact_title_compname_address()
         self.fill_contact_phones()
-        self.fill_contact_emails(Email(first="1111@example.com",
-                                       second="22222@example.com",
-                                       third="33333@example.com"))
+        self.fill_contact_emails(Contact(first_email="1111@example.com",
+                                         second_email="22222@example.com",
+                                         third_email="33333@example.com"))
         self.fill_contact_homepage()
         self.submit_new_contact()
         self.logout()
@@ -54,22 +55,22 @@ class TestAddGroup(unittest.TestCase):
         # Go to home page
         wd.find_element_by_link_text("home page").click()
 
-    def fill_contact_homepage(self):
+    def fill_contact_homepage(self, homepage="example.com"):
         wd = self.wd
-        wd.find_element_by_name("homepage").send_keys("example.com")
+        wd.find_element_by_name("homepage").send_keys(homepage)
         wd.find_element_by_name("theform").click()
 
-    def fill_contact_emails(self, email):
+    def fill_contact_emails(self, contact):
         wd = self.wd
         # Fill in contact emails and homepage
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").send_keys(email.first)
+        wd.find_element_by_name("email").send_keys(contact.first_email)
         wd.find_element_by_name("email2").click()
-        wd.find_element_by_name("email2").send_keys(email.second)
+        wd.find_element_by_name("email2").send_keys(contact.second_email)
         wd.find_element_by_name("email3").click()
-        wd.find_element_by_name("email3").send_keys(email.third)
+        wd.find_element_by_name("email3").send_keys(contact.third_email)
         wd.find_element_by_name("homepage").click()
 
     def fill_contact_phones(self):
