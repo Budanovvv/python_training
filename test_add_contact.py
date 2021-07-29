@@ -12,20 +12,20 @@ class TestAddGroup(unittest.TestCase):
 
     def test_add_group(self):
         self.login(user="admin", password="secret")
-        self.fill_name(Contact(name_frst="Vasiliy",
-                       name_mdl="Vasiliyevich",
-                       name_lst="Vasya",
-                       name_nick="Vas"))
-        self.title_company_address(Contact(comp_title="Vasya_1111",
-                                   comp_name="VasComp",
+        self.fill_name(Contact(name_frst="Petr",
+                       name_mdl="Petrovych",
+                       name_lst="Petrov",
+                       name_nick="PetrCompNick"))
+        self.title_company_address(Contact(comp_title="PetrComp_1111",
+                                   comp_name="PetrComp",
                                    comp_addr="Ulica 2"))
-        self.phones(Contact(home_ph="12356",
-                    mobile_ph="65321",
-                    work_ph="235678765",
-                    fax_ph="345654345"))
-        self.emails_homepage(Contact(email_1="23432@example.com",
-                             email_2="234543@example.com",
-                             email_3="re343w@example.com",
+        self.phones(Contact(home_ph="111-111-111",
+                    mobile_ph="222-222-222",
+                    work_ph="333-333-333",
+                    fax_ph="444-444-444"))
+        self.emails_homepage(Contact(email_1="111111@example.com",
+                             email_2="222222@example.com",
+                             email_3="333333@example.com",
                              home_page="example.com"))
         self.anniversary_group(Contact(b_day="3",
                                b_month="March",
