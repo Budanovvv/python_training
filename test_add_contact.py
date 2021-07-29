@@ -10,114 +10,160 @@ class TestAddGroup(unittest.TestCase):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def test_add_contact(self):
+    def test_add_group(self):
         self.login(user="admin", password="secret")
-        self.init_contact_creation()
-        Select(self.wd.find_element_by_name("bday")).select_by_visible_text("1")
-        self.fill_contact_names(Contact(firstname="Some name",
-                                        middlename="Some middle name",
-                                        lastname="Some last name",
-                                        nickname="Валентин"))
-        self.fill_contact_title_compname_address()
-        self.fill_contact_phones()
-        self.fill_contact_emails(Contact(first_email="1111@example.com",
-                                         second_email="22222@example.com",
-                                         third_email="33333@example.com"))
-        self.fill_contact_homepage()
-        self.submit_new_contact()
+        self.fill_name(Contact(name_frst="Vasiliy",
+                       name_mdl="Vasiliyevich",
+                       name_lst="Vasya",
+                       name_nick="Vas"))
+        self.title_company_address(Contact(comp_title="Vasya_1111",
+                                   comp_name="VasComp",
+                                   comp_addr="Ulica 2"))
+        self.phones(Contact(home_ph="12356",
+                    mobile_ph="65321",
+                    work_ph="235678765",
+                    fax_ph="345654345"))
+        self.emails_homepage(Contact(email_1="23432@example.com",
+                             email_2="234543@example.com",
+                             email_3="re343w@example.com",
+                             home_page="example.com"))
+        self.anniversary_group(Contact(b_day="3",
+                               b_month="March",
+                               b_year="2000",
+                               a_day="4",
+                               a_month="February",
+                               a_year="2010"))
+        self.secondary(Contact(secondary_address="Secondary Address unknown",
+                       secondary_phone="Secondary phone ?",
+                       secondary_notes="Secondary notes"))
         self.logout()
 
-    def test_add_empty_contact(self):
+    def test_add_empty_group(self):
         self.login(user="admin", password="secret")
-        self.init_contact_creation()
-        self.fill_contact_names(Contact(firstname="",
-                                        middlename="",
-                                        lastname="",
-                                        nickname=""))
-        self.fill_contact_title_compname_address()
-        self.fill_contact_phones()
-        self.fill_contact_emails(Contact(first_email="1111@example.com",
-                                         second_email="22222@example.com",
-                                         third_email="33333@example.com"))
-        self.fill_contact_homepage()
-        self.submit_new_contact()
+        self.fill_name(Contact(name_frst="",
+                       name_mdl="",
+                       name_lst="",
+                       name_nick=""))
+        self.title_company_address(Contact(comp_title="",
+                                   comp_name="",
+                                   comp_addr=""))
+        self.phones(Contact(home_ph="",
+                    mobile_ph="",
+                    work_ph="",
+                    fax_ph=""))
+        self.emails_homepage(Contact(email_1="",
+                             email_2="",
+                             email_3="",
+                             home_page=""))
+        self.secondary(Contact(secondary_address="",
+                       secondary_phone="",
+                       secondary_notes="1"))
         self.logout()
 
     def logout(self):
         wd = self.wd
-        # logout
+        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        wd.find_element_by_link_text("home page").click()
         wd.find_element_by_link_text("Logout").click()
 
-    def submit_new_contact(self):
+    def secondary(self, contact):
         wd = self.wd
-        # Submit contact creation
-        wd.find_element_by_name("submit").click()
-        # Go to home page
-        wd.find_element_by_link_text("home page").click()
+        wd.find_element_by_name("address2").click()
+        wd.find_element_by_name("address2").clear()
+        wd.find_element_by_name("address2").send_keys(contact.secondary_address)
+        wd.find_element_by_name("phone2").click()
+        wd.find_element_by_name("phone2").clear()
+        wd.find_element_by_name("phone2").send_keys(contact.secondary_phone)
+        wd.find_element_by_name("notes").click()
+        wd.find_element_by_name("notes").clear()
+        wd.find_element_by_name("notes").send_keys(contact.secondary_notes)
 
-    def fill_contact_homepage(self, homepage="example.com"):
+    def anniversary_group(self, contact):
         wd = self.wd
-        wd.find_element_by_name("homepage").send_keys(homepage)
-        wd.find_element_by_name("theform").click()
+        wd.find_element_by_name("bday").click()
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.b_day)
+        wd.find_element_by_name("bmonth").click()
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.b_month)
+        wd.find_element_by_name("byear").click()
+        wd.find_element_by_name("byear").clear()
+        wd.find_element_by_name("byear").send_keys(contact.b_year)
+        wd.find_element_by_name("aday").click()
+        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.a_day)
+        wd.find_element_by_name("amonth").click()
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.a_month)
+        wd.find_element_by_name("ayear").click()
+        wd.find_element_by_name("ayear").clear()
+        wd.find_element_by_name("ayear").send_keys(contact.a_year)
+        wd.find_element_by_name("new_group").click()
 
-    def fill_contact_emails(self, contact):
+    def emails_homepage(self, contact):
         wd = self.wd
-        # Fill in contact emails and homepage
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").send_keys(contact.first_email)
+        wd.find_element_by_name("email").clear()
+        wd.find_element_by_name("email").send_keys(contact.email_1)
         wd.find_element_by_name("email2").click()
-        wd.find_element_by_name("email2").send_keys(contact.second_email)
+        wd.find_element_by_name("email2").clear()
+        wd.find_element_by_name("email2").send_keys(contact.email_2)
         wd.find_element_by_name("email3").click()
-        wd.find_element_by_name("email3").send_keys(contact.third_email)
+        wd.find_element_by_name("email3").clear()
+        wd.find_element_by_name("email3").send_keys(contact.email_3)
         wd.find_element_by_name("homepage").click()
+        wd.find_element_by_name("homepage").clear()
+        wd.find_element_by_name("homepage").send_keys(contact.home_page)
 
-    def fill_contact_phones(self):
+    def phones(self, contact):
         wd = self.wd
-        # Fill in contact phones
         wd.find_element_by_name("home").click()
-        wd.find_element_by_name("home").send_keys("2345678")
+        wd.find_element_by_name("home").clear()
+        wd.find_element_by_name("home").send_keys(contact.home_ph)
         wd.find_element_by_name("mobile").click()
-        wd.find_element_by_name("mobile").send_keys("98765432")
-        wd.find_element_by_name("work").send_keys("123456")
+        wd.find_element_by_name("mobile").clear()
+        wd.find_element_by_name("mobile").send_keys(contact.mobile_ph)
+        wd.find_element_by_name("work").click()
+        wd.find_element_by_name("work").clear()
+        wd.find_element_by_name("work").send_keys(contact.work_ph)
         wd.find_element_by_name("fax").click()
-        wd.find_element_by_name("fax").send_keys("234567")
+        wd.find_element_by_name("fax").clear()
+        wd.find_element_by_name("fax").send_keys(contact.fax_ph)
 
-    def fill_contact_title_compname_address(self):
+    def title_company_address(self, contact):
         wd = self.wd
-        # Fill in title, company name, address
         wd.find_element_by_name("title").click()
-        wd.find_element_by_name("title").send_keys("1111")
+        wd.find_element_by_name("title").clear()
+        wd.find_element_by_name("title").send_keys(contact.comp_title)
         wd.find_element_by_name("company").click()
-        wd.find_element_by_name("company").send_keys("BWR")
+        wd.find_element_by_name("company").clear()
+        wd.find_element_by_name("company").send_keys(contact.comp_name)
         wd.find_element_by_name("address").click()
+        wd.find_element_by_name("address").clear()
+        wd.find_element_by_name("address").send_keys(contact.comp_addr)
 
-    def fill_contact_names(self, contact):
+    def fill_name(self, contact):
         wd = self.wd
-        # Fill in full name and nickname
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").send_keys(contact.firstname)
-        wd.find_element_by_name("middlename").click()
-        wd.find_element_by_name("middlename").send_keys(contact.middlename)
-        wd.find_element_by_name("lastname").click()
-        wd.find_element_by_name("lastname").send_keys(contact.lastname)
-        wd.find_element_by_name("nickname").click()
-        wd.find_element_by_name("nickname").send_keys(contact.nickname)
-
-    def init_contact_creation(self):
-        wd = self.wd
-        # Init contact creation
         wd.find_element_by_link_text("add new").click()
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(contact.name_frst)
+        wd.find_element_by_name("middlename").click()
+        wd.find_element_by_name("middlename").clear()
+        wd.find_element_by_name("middlename").send_keys(contact.name_mdl)
+        wd.find_element_by_name("lastname").click()
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(contact.name_lst)
+        wd.find_element_by_name("nickname").click()
+        wd.find_element_by_name("nickname").clear()
+        wd.find_element_by_name("nickname").send_keys(contact.name_nick)
 
     def login(self, user, password):
         wd = self.wd
-        # Login
         wd.get("http://localhost/addressbook/edit.php")
+        wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(user)
         wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
+        wd.find_element_by_id("LoginForm").submit()
 
     def is_element_present(self, how, what):
         try:
