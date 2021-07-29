@@ -11,7 +11,7 @@ class TestAddGroup(unittest.TestCase):
 
     def test_add_group(self):
         self.login(user_name="admin", password="secret")
-        self.create_group(Group(name="Group name",
+        self.create_group(Group(name="New group",
                                 header="Group header",
                                 footer="Group footer"))
         self.logout()
