@@ -57,7 +57,7 @@ class TestAddGroup(unittest.TestCase):
                              home_page=""))
         self.secondary(Contact(secondary_address="",
                        secondary_phone="",
-                       secondary_notes="1"))
+                       secondary_notes=""))
         self.logout()
 
     def logout(self):
