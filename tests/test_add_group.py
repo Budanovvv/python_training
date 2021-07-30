@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 from model.group import Group
-from fixture.application import Application
+from fixture.application_group import Application_group
 import pytest
 
 
 @pytest.fixture
 def app(request):
-    fixture = Application()
+    fixture = Application_group()
     request.addfinalizer(fixture.destroy)
     return fixture
 
