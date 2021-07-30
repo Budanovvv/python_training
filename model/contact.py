@@ -30,7 +30,7 @@ class Contact:
         self.name_nick = name_nick
         self.comp_title = comp_title
         self.comp_name = comp_name
-        self.comp_addr = comp_name
+        self.comp_addr = comp_addr
         self.home_ph = home_ph
         self.mobile_ph = mobile_ph
         self.work_ph = work_ph
