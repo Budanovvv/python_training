@@ -1,13 +1,23 @@
-from selenium.webdriver.support.ui import Select
+from selenium import webdriver
+from fixture.session import SessionHelper
+from fixture.group import GroupHelper
+from fixture.contact import ContactHelper
 
 
-class ContactHelper:
+class Application_contact:
 
-    def __init__(self, app):
-        self.app = app
+    def __init__(self):
+        self.wd = webdriver.Firefox()
+        self.wd.implicitly_wait(30)
+        self.session = SessionHelper(self)
+        self.group = GroupHelper(self)
+        self.contact = ContactHelper(self)
 
-    def create(self, contact):
-        wd = self.app.wd
+    def home_page(self):
+        wd = self.wd
+<<<<<<< HEAD:fixture/application.py
+        wd.get("http://localhost/addressbook/index.php")
+=======
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -88,35 +98,7 @@ class ContactHelper:
         wd.find_element_by_name("submit").click()
         # go back
         wd.find_element_by_link_text("home page").click()
+>>>>>>> Budanovvv:fixture/application_contact.py
 
-    def delete_first_contact(self):
-        wd = self.app.wd
-        wd.find_element_by_name("selected[]").click()
-        wd.find_element_by_xpath("//input[@value='Delete']").click()
-        wd.switch_to.alert.accept()
-
-    def update_first_contact(self, contact):
-        wd = self.app.wd
-        wd.find_element_by_name("selected[]").click()
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        # phones
-        wd.find_element_by_name("home").click()
-        wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(contact.home_ph)
-        wd.find_element_by_name("mobile").click()
-        wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(contact.mobile_ph)
-        wd.find_element_by_name("work").click()
-        wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys(contact.work_ph)
-        wd.find_element_by_name("fax").click()
-        wd.find_element_by_name("fax").clear()
-        wd.find_element_by_name("fax").send_keys(contact.fax_ph)
-        # Submit contact creation
-        wd.find_element_by_name("update").click()
-        # go back
-        wd.find_element_by_link_text("home page").click()
-
-
-
-
+    def destroy(self):
+        self.wd.quit()

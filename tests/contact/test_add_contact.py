@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 from model.contact import Contact
-from fixture.application import Application
+<<<<<<< HEAD:tests/contact/test_add_contact.py
+=======
+from fixture.application_contact import Application_contact
 import pytest
 
 
 @pytest.fixture
 def app(request):
-    fixture = Application()
+    fixture = Application_contact()
     request.addfinalizer(fixture.destroy)
     return fixture
+>>>>>>> Budanovvv:tests/test_add_contact.py
 
 
 def test_add_contact(app):
@@ -38,7 +41,6 @@ def test_add_contact(app):
                                secondary_address="Secondary Address unknown",
                                secondary_phone="Secondary phone ?",
                                secondary_notes="Secondary notes"))
-
     app.session.logout()
 
 
@@ -69,5 +71,4 @@ def test_add_empty_contact(app):
                                secondary_address="",
                                secondary_phone="",
                                secondary_notes=""))
-
     app.session.logout()
