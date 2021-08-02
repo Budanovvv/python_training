@@ -23,7 +23,7 @@ class GroupHelper:
         # go back
         wd.find_element_by_link_text("group page").click()
 
-    def delete(self):
+    def delete_first_group(self):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
         # Go to group page
@@ -33,7 +33,7 @@ class GroupHelper:
         wd.find_element_by_link_text("group page").click()
         # go back
 
-    def update(self, group):
+    def update_first_group(self, group):
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
         # Go to group page
