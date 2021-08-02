@@ -1,17 +1,5 @@
 # -*- coding: utf-8 -*-
 from model.contact import Contact
-<<<<<<< HEAD:tests/contact/test_add_contact.py
-=======
-from fixture.application_contact import Application_contact
-import pytest
-
-
-@pytest.fixture
-def app(request):
-    fixture = Application_contact()
-    request.addfinalizer(fixture.destroy)
-    return fixture
->>>>>>> Budanovvv:tests/test_add_contact.py
 
 
 def test_add_contact(app):
