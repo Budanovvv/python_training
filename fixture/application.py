@@ -13,5 +13,9 @@ class Application:
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
 
+    def home_page(self):
+        wd = self.wd
+        wd.get("http://localhost/addressbook/edit.php")
+
     def destroy(self):
         self.wd.quit()
