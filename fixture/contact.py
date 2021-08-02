@@ -116,7 +116,3 @@ class ContactHelper:
         wd.find_element_by_name("update").click()
         # go back
         wd.find_element_by_link_text("home page").click()
-
-
-
-
