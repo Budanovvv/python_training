@@ -8,6 +8,7 @@ class ContactHelper:
 
     def create(self, contact):
         wd = self.app.wd
+        self.go_home_page(wd)
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -31,19 +32,7 @@ class ContactHelper:
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
         wd.find_element_by_name("address").send_keys(contact.comp_addr)
-        # phones
-        wd.find_element_by_name("home").click()
-        wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(contact.home_ph)
-        wd.find_element_by_name("mobile").click()
-        wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(contact.mobile_ph)
-        wd.find_element_by_name("work").click()
-        wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys(contact.work_ph)
-        wd.find_element_by_name("fax").click()
-        wd.find_element_by_name("fax").clear()
-        wd.find_element_by_name("fax").send_keys(contact.fax_ph)
+        self.add_phones(contact, wd)
         # emails_homepage
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
@@ -91,14 +80,26 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        self.go_home_page(wd)
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
 
     def update_first_contact(self, contact):
         wd = self.app.wd
+        self.go_home_page(wd)
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        self.add_phones(contact, wd)
+        # Submit contact creation
+        wd.find_element_by_name("update").click()
+        # go back
+        wd.find_element_by_link_text("home page").click()
+
+    def go_home_page(self, wd):
+        wd.find_element_by_link_text("home").click()
+
+    def add_phones(self, contact, wd):
         # phones
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
@@ -112,7 +113,3 @@ class ContactHelper:
         wd.find_element_by_name("fax").click()
         wd.find_element_by_name("fax").clear()
         wd.find_element_by_name("fax").send_keys(contact.fax_ph)
-        # Submit contact creation
-        wd.find_element_by_name("update").click()
-        # go back
-        wd.find_element_by_link_text("home page").click()
