@@ -30,27 +30,11 @@ def test_add_contact(app):
 
 
 def test_add_empty_contact(app):
-    app.contact.create(Contact(name_frst="",
-                               name_mdl="",
-                               name_lst="",
-                               name_nick="",
-                               comp_title="",
-                               comp_name="",
-                               comp_addr="",
-                               home_ph="",
-                               mobile_ph="",
-                               work_ph="",
-                               fax_ph="",
-                               email_1="",
-                               email_2="",
-                               email_3="",
-                               home_page="",
+    app.contact.create(Contact(name_frst="Empty",
                                b_day="1",
                                b_month="March",
                                b_year="",
                                a_day="1",
                                a_month="March",
                                a_year="",
-                               secondary_address="",
-                               secondary_phone="",
-                               secondary_notes=""))
+                               secondary_notes="Really empty"))

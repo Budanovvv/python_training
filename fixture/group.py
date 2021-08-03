@@ -50,10 +50,6 @@ class GroupHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def fill_form_group(self, group):
-        wd = self.app.wd
         self.change_group_value("group_name", group.name)
         self.change_group_value("group_header", group.header)
         self.change_group_value("group_footer", group.footer)
-
-
-
