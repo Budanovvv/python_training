@@ -3,7 +3,7 @@ from model.contact import Contact
 
 
 def test_add_contact(app):
-    app.home_page()
+    app.main_url()
     app.session.login(user="admin", password="secret")
     app.contact.create(Contact(name_frst="Petr",
                                name_mdl="Petrovych",
@@ -33,7 +33,7 @@ def test_add_contact(app):
 
 
 def test_add_empty_contact(app):
-    app.home_page()
+    app.main_url()
     app.session.login(user="admin", password="secret")
     app.contact.create(Contact(name_frst="",
                                name_mdl="",

@@ -3,7 +3,7 @@ from model.group import Group
 
 
 def test_add_group(app):
-    app.home_page()
+    app.main_url()
     app.session.login(user="admin", password="secret")
     app.group.create(Group(name="New group",
                            header="Group header",
@@ -12,7 +12,7 @@ def test_add_group(app):
 
 
 def test_add_empty_group(app):
-    app.home_page()
+    app.main_url()
     app.session.login(user="admin", password="secret")
     app.group.create(Group(name="",
                            header="",

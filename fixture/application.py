@@ -13,7 +13,7 @@ class Application:
         self.contact = ContactHelper(self)
         self.group = GroupHelper(self)
 
-    def home_page(self):
+    def main_url(self):
         self.wd.get("http://localhost/addressbook/index.php")
 
     def destroy(self):
