@@ -11,12 +11,10 @@ def app():
     global fixture
     if fixture is None:
         fixture = Application()
-        fixture.main_url()
         fixture.session.login(user="admin", password="secret")
     else:
         if not fixture.is_valid:
             fixture = Application()
-            fixture.main_url()
             fixture.session.login(user="admin", password="secret")
     return fixture
 
