@@ -32,7 +32,7 @@ class ContactHelper:
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
         wd.find_element_by_name("address").send_keys(contact.comp_addr)
-        self.add_phones(contact, wd)
+        self.add_phones(contact)
         # emails_homepage
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
@@ -80,26 +80,28 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
-        self.go_home_page(wd)
+        self.go_home_page()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
 
     def update_first_contact(self, contact):
         wd = self.app.wd
-        self.go_home_page(wd)
+        self.go_home_page()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        self.add_phones(contact, wd)
+        self.add_phones(contact)
         # Submit contact creation
         wd.find_element_by_name("update").click()
         # go back
         wd.find_element_by_link_text("home page").click()
 
-    def go_home_page(self, wd):
+    def go_home_page(self):
+        wd = self.app.wd
         wd.find_element_by_link_text("home").click()
 
-    def add_phones(self, contact, wd):
+    def add_phones(self, contact):
+        wd = self.app.wd
         # phones
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
