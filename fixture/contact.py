@@ -10,12 +10,7 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("home").click()
         wd.find_element_by_link_text("add new").click()
-        self.fill_form_contact_names(contact)
-        self.fill_form_contact_company(contact)
-        self.fill_form_contact_phones(contact)
-        self.fill_contact_form_emails_hmpg(contact)
-        self.fill_contact_form_annivers(contact)
-        self.fill_contact_form_secondary(contact)
+        self.fill_form_contact(contact)
         # Submit contact creation
         wd.find_element_by_name("submit").click()
         # go back
@@ -35,7 +30,7 @@ class ContactHelper:
         wd.find_element_by_link_text("home").click()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        self.fill_form_contact_phones(contact)
+        self.fill_form_contact(contact)
         # Submit contact creation
         wd.find_element_by_name("update").click()
         # go back
@@ -48,29 +43,26 @@ class ContactHelper:
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
 
-    def fill_form_contact_names(self, contact):
+    def fill_form_contact(self, contact):
         self.change_contact_value("firstname", contact.name_frst)
         self.change_contact_value("middlename", contact.name_mdl)
         self.change_contact_value("lastname", contact.name_lst)
         self.change_contact_value("nickname", contact.name_nick)
-
-    def fill_form_contact_company(self, contact):
         self.change_contact_value("title", contact.comp_title)
         self.change_contact_value("company", contact.comp_name)
         self.change_contact_value("address", contact.comp_addr)
         self.change_contact_value("address", contact.comp_addr)
-
-    def fill_form_contact_phones(self, contact):
         self.change_contact_value("home", contact.home_ph)
         self.change_contact_value("mobile", contact.mobile_ph)
         self.change_contact_value("work", contact.work_ph)
         self.change_contact_value("fax", contact.fax_ph)
-
-    def fill_contact_form_emails_hmpg(self, contact):
         self.change_contact_value("email", contact.email_1)
         self.change_contact_value("email2", contact.email_2)
         self.change_contact_value("email3", contact.email_3)
         self.change_contact_value("homepage", contact.home_page)
+        self.change_contact_value("address2", contact.secondary_address)
+        self.change_contact_value("phone2", contact.secondary_phone)
+        self.change_contact_value("notes", contact.secondary_notes)
 
     def fill_contact_form_annivers(self, contact):
         wd = self.app.wd
@@ -90,7 +82,3 @@ class ContactHelper:
         wd.find_element_by_name("ayear").send_keys(contact.a_year)
         wd.find_element_by_name("new_group").click()
 
-    def fill_contact_form_secondary(self, contact):
-        self.change_contact_value("address2", contact.secondary_address)
-        self.change_contact_value("phone2", contact.secondary_phone)
-        self.change_contact_value("notes", contact.secondary_notes)
