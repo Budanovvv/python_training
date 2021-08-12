@@ -64,7 +64,7 @@ class ContactHelper:
         self.change_contact_value("phone2", contact.secondary_phone)
         self.change_contact_value("notes", contact.secondary_notes)
 
-    def fill_contact_form_annivers(self, contact):
+    def fill_contact_form_anniversary(self, contact):
         wd = self.app.wd
         wd.find_element_by_name("bday").click()
         Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.b_day)
