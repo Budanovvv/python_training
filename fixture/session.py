@@ -14,7 +14,6 @@ class SessionHelper:
         wd.find_element_by_id("LoginForm").submit()
 
     def ensure_login(self, user, password):
-        wd = self.app.wd
         if self.is_logged_in():
             if self.is_logged_in_as(user):
                 return
@@ -36,6 +35,5 @@ class SessionHelper:
         wd.find_element_by_name("user")
 
     def ensure_logout(self):
-        wd = self.app.wd
         if self.is_logged_in():
             self.logout()

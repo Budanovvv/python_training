@@ -50,8 +50,8 @@ class ContactHelper:
         self.change_contact_value("nickname", contact.name_nick)
         self.change_contact_value("title", contact.comp_title)
         self.change_contact_value("company", contact.comp_name)
-        self.change_contact_value("address", contact.comp_addr)
-        self.change_contact_value("address", contact.comp_addr)
+        self.change_contact_value("address", contact.comp_address)
+        self.change_contact_value("address", contact.comp_address)
         self.change_contact_value("home", contact.home_ph)
         self.change_contact_value("mobile", contact.mobile_ph)
         self.change_contact_value("work", contact.work_ph)
@@ -81,4 +81,3 @@ class ContactHelper:
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys(contact.a_year)
         wd.find_element_by_name("new_group").click()
-

@@ -9,7 +9,7 @@ def test_add_contact(app):
                                name_nick="PetrCompNick",
                                comp_title="PetrComp_1111",
                                comp_name="PetrComp",
-                               comp_addr="Ulica 2",
+                               comp_address="Ulica 2",
                                home_ph="111-111-111",
                                mobile_ph="222-222-222",
                                work_ph="333-333-333",
