@@ -12,7 +12,7 @@ def app():
     if fixture is None:
         fixture = Application()
     else:
-        if not fixture.is_valid:
+        if not fixture.is_valid():
             fixture = Application()
     fixture.session.ensure_login(user="admin", password="secret")
     return fixture
