@@ -33,8 +33,13 @@ class ContactHelper:
         self.fill_form_contact(contact)
         # Submit contact creation
         wd.find_element_by_name("update").click()
-        # go back
-        wd.find_element_by_link_text("home page").click()
+        self.go_to_home_page()
+
+    def go_to_home_page(self):
+        wd = self.app.wd
+        if not (wd.current_url.endswith("/index.php") and
+                len(wd.find_elements_by_xpath("//input[@value='Delete']")) > 0):
+            wd.find_element_by_link_text("home").click()
 
     def change_contact_value(self, field_name, text):
         wd = self.app.wd
