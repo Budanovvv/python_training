@@ -23,7 +23,8 @@ class Contact:
                  a_year=None,
                  secondary_address=None,
                  secondary_phone=None,
-                 secondary_notes=None):
+                 secondary_notes=None,
+                 contact_id=None):
         self.name_frst = name_frst
         self.name_mdl = name_mdl
         self.name_lst = name_lst
@@ -48,3 +49,4 @@ class Contact:
         self.secondary_address = secondary_address
         self.secondary_phone = secondary_phone
         self.secondary_notes = secondary_notes
+        self.contact_id = contact_id
