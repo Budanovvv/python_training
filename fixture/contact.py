@@ -15,7 +15,7 @@ class ContactHelper:
         # Submit contact creation
         wd.find_element_by_name("submit").click()
         # go back
-        self.go_to_home_page()
+        # self.go_to_home_page()
 
     def delete_first_contact(self):
         wd = self.app.wd
@@ -23,8 +23,7 @@ class ContactHelper:
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
-        wd.find_element_by_name("selected[]")
-        self.go_to_home_page()
+        wd.find_element_by_css_selector("div.msgbox")
 
     def update_first_contact(self, contact):
         wd = self.app.wd
@@ -34,7 +33,7 @@ class ContactHelper:
         self.fill_form_contact(contact)
         # Submit contact creation
         wd.find_element_by_name("update").click()
-        self.go_to_home_page()
+        # self.go_to_home_page()
 
     def go_to_home_page(self):
         wd = self.app.wd
@@ -90,14 +89,17 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        self.go_to_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
-    # def get_contact_list(self):
-    #     wd = self.app.wd
-    #     self.go_to_home_page()
-    #     contacts = []
-    #     for element in wd.find_elements_by_css_selector("td.center"):
-    #         contact_id = element.find_element_by_name("selected[]").get_attribute("value")
-    #         contacts.append(Contact(contact_id=contact_id))
-    #     return groups
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.go_to_home_page()
+        contacts = []
+        for row in wd.find_elements_by_name("entry"):
+            cells = row.find_elements_by_tag_name("td")
+            firstname = cells[2].text
+            lastname = cells[1].text
+            contact_id = cells[0].find_element_by_tag_name("input").get_attribute("value")
+            contacts.append(Contact(contact_id=contact_id, name_frst=firstname, name_lst=lastname))
+        return contacts
