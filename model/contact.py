@@ -3,74 +3,74 @@ from sys import maxsize
 
 class Contact:
 
-    def __init__(self, name_frst=None,
-                 name_mdl=None,
-                 name_lst=None,
-                 name_nick=None,
-                 comp_title=None,
-                 comp_name=None,
-                 comp_address=None,
-                 home_ph=None,
-                 mobile_ph=None,
-                 work_ph=None,
-                 fax_ph=None,
+    def __init__(self, firstname=None,
+                 middlename=None,
+                 lastname=None,
+                 nickname=None,
+                 company_title=None,
+                 company_name=None,
+                 company_address=None,
+                 home_phone=None,
+                 mobile_phone=None,
+                 work_phone=None,
+                 fax=None,
                  email_1=None,
                  email_2=None,
                  email_3=None,
                  home_page=None,
-                 b_day=None,
-                 b_month=None,
-                 b_year=None,
-                 a_day=None,
-                 a_month=None,
-                 a_year=None,
+                 birth_day=None,
+                 birth_month=None,
+                 birth_year=None,
+                 anniversary_day=None,
+                 anniversary_month=None,
+                 anniversary_year=None,
                  secondary_address=None,
                  secondary_phone=None,
                  secondary_notes=None,
-                 contact_id=None):
-        self.name_frst = name_frst
-        self.name_mdl = name_mdl
-        self.name_lst = name_lst
-        self.name_nick = name_nick
-        self.comp_title = comp_title
-        self.comp_name = comp_name
-        self.comp_address = comp_address
-        self.home_ph = home_ph
-        self.mobile_ph = mobile_ph
-        self.work_ph = work_ph
-        self.fax_ph = fax_ph
+                 id=None):
+        self.firstname = firstname
+        self.middlename = middlename
+        self.lastname = lastname
+        self.nickname = nickname
+        self.company_title = company_title
+        self.company_name = company_name
+        self.company_address = company_address
+        self.home_phone = home_phone
+        self.mobile_phone = mobile_phone
+        self.work_phone = work_phone
+        self.fax = fax
         self.email_1 = email_1
         self.email_2 = email_2
         self.email_3 = email_3
         self.home_page = home_page
-        self.b_day = b_day
-        self.b_month = b_month
-        self.b_year = b_year
-        self.a_day = a_day
-        self.a_month = a_month
-        self.a_year = a_year
+        self.birth_day = birth_day
+        self.birth_month = birth_month
+        self.birth_year = birth_year
+        self.anniversary_day = anniversary_day
+        self.anniversary_month = anniversary_month
+        self.anniversary_year = anniversary_year
         self.secondary_address = secondary_address
         self.secondary_phone = secondary_phone
         self.secondary_notes = secondary_notes
-        self.contact_id = contact_id
+        self.id = id
 
     def __repr__(self):
-        return "%s, %s, %s" % (self.name_frst, self.name_lst, self.contact_id)
+        return "%s, %s, %s" % (self.firstname, self.lastname, self.id)
 
     def __eq__(self, other):
-        return (self.contact_id is None
-                or other.contact_id is None
-                or self.contact_id == other.contact_id) \
-               and (self.name_frst is None
-                    or other.name_frst is None
-                    or self.name_frst == other.name_frst) \
-               and (self.name_lst is None
-                    or other.name_lst is None
-                    or self.name_lst == other.name_lst)
+        return (self.id is None
+                or other.id is None
+                or self.id == other.id) \
+               and (self.firstname is None
+                    or other.firstname is None
+                    or self.firstname == other.firstname) \
+               and (self.lastname is None
+                    or other.lastname is None
+                    or self.lastname == other.lastname)
 
     def id_or_max(self):
-        if self.contact_id:
-            return int(self.contact_id)
+        if self.id:
+            return int(self.id)
         else:
             return maxsize
 

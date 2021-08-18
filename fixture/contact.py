@@ -58,18 +58,18 @@ class ContactHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def fill_form_contact(self, contact):
-        self.change_contact_value("firstname", contact.name_frst)
-        self.change_contact_value("middlename", contact.name_mdl)
-        self.change_contact_value("lastname", contact.name_lst)
-        self.change_contact_value("nickname", contact.name_nick)
-        self.change_contact_value("title", contact.comp_title)
-        self.change_contact_value("company", contact.comp_name)
-        self.change_contact_value("address", contact.comp_address)
-        self.change_contact_value("address", contact.comp_address)
-        self.change_contact_value("home", contact.home_ph)
-        self.change_contact_value("mobile", contact.mobile_ph)
-        self.change_contact_value("work", contact.work_ph)
-        self.change_contact_value("fax", contact.fax_ph)
+        self.change_contact_value("firstname", contact.firstname)
+        self.change_contact_value("middlename", contact.middlename)
+        self.change_contact_value("lastname", contact.lastname)
+        self.change_contact_value("nickname", contact.nickname)
+        self.change_contact_value("title", contact.company_title)
+        self.change_contact_value("company", contact.company_name)
+        self.change_contact_value("address", contact.company_address)
+        self.change_contact_value("address", contact.company_address)
+        self.change_contact_value("home", contact.home_phone)
+        self.change_contact_value("mobile", contact.mobile_phone)
+        self.change_contact_value("work", contact.work_phone)
+        self.change_contact_value("fax", contact.fax)
         self.change_contact_value("email", contact.email_1)
         self.change_contact_value("email2", contact.email_2)
         self.change_contact_value("email3", contact.email_3)
@@ -81,19 +81,19 @@ class ContactHelper:
     def fill_contact_form_anniversary(self, contact):
         wd = self.app.wd
         wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.b_day)
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.birth_day)
         wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.b_month)
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.birth_month)
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(contact.b_year)
+        wd.find_element_by_name("byear").send_keys(contact.birth_year)
         wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.a_day)
+        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.anniversary_day)
         wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.a_month)
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.anniversary_month)
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys(contact.a_year)
+        wd.find_element_by_name("ayear").send_keys(contact.anniversary_year)
         wd.find_element_by_name("new_group").click()
 
     def count(self):
@@ -113,5 +113,5 @@ class ContactHelper:
                 firstname = cells[2].text
                 lastname = cells[1].text
                 contact_id = cells[0].find_element_by_tag_name("input").get_attribute("value")
-                self.contact_cache.append(Contact(contact_id=contact_id, name_frst=firstname, name_lst=lastname))
+                self.contact_cache.append(Contact(id=contact_id, firstname=firstname, lastname=lastname))
         return self.contact_cache
