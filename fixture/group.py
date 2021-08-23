@@ -44,7 +44,7 @@ class GroupHelper:
         self.group_cache = None
 
     def update_first_group(self):
-        self.update_group_by_index(0)
+        self.update_group_by_index(0, new_group_data)
 
     def select_first_group(self):
         self.select_group_by_index(0)

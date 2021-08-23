@@ -7,7 +7,7 @@ def test_update_rnd_contact_1(app):
         app.contact.create(Contact(firstname="Petr"))
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
-    contact = Contact(firstname="99999", lastname="99999")
+    contact = Contact(firstname="123rtgrf", lastname="234tgfd")
     contact.id = old_contacts[index].id
     app.contact.update_contact_by_index(contact, index)
     new_contacts = app.contact.get_contact_list()
@@ -21,7 +21,7 @@ def test_update_rnd_contact_2(app):
         app.contact.create(Contact(firstname="Petr"))
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
-    contact = Contact(firstname="99999", lastname="99999")
+    contact = Contact(firstname="1233", lastname="12233")
     contact.id = old_contacts[index].id
     app.contact.update_contact_by_index(contact, index)
     new_contacts = app.contact.get_contact_list()

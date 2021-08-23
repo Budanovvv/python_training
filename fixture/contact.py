@@ -113,5 +113,5 @@ class ContactHelper:
                 firstname = cells[2].text
                 lastname = cells[1].text
                 contact_id = cells[0].find_element_by_tag_name("input").get_attribute("value")
-                self.contact_cache.append(Contact(id=contact_id, firstname=firstname, lastname=lastname))
-        return self.contact_cache
+                self.contact_cache.append(Contact(firstname=firstname, lastname=lastname, id=contact_id))
+        return list(self.contact_cache)
