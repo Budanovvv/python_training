@@ -62,8 +62,13 @@ class ContactHelper:
         work_phone = wd.find_element_by_name('work').get_attribute('value')
         mobile_phone = wd.find_element_by_name('mobile').get_attribute('value')
         secondary_phone = wd.find_element_by_name('phone2').get_attribute('value')
+        email_1 = wd.find_element_by_name('email').get_attribute('value')
+        email_2 = wd.find_element_by_name('email2').get_attribute('value')
+        email_3 = wd.find_element_by_name('email3').get_attribute('value')
+        address = wd.find_element_by_name('address').text
         return Contact(firstname=firstname, lastname=lastname, id=id, home_phone=home_phone, work_phone=work_phone,
-                       mobile_phone=mobile_phone, secondary_phone=secondary_phone)
+                       mobile_phone=mobile_phone, secondary_phone=secondary_phone, email_1=email_1, email_2=email_2,
+                       email_3=email_3, address=address)
 
     def delete_contact_by_index(self, index):
         wd = self.app.wd
@@ -104,8 +109,8 @@ class ContactHelper:
         self.change_contact_value("nickname", contact.nickname)
         self.change_contact_value("title", contact.company_title)
         self.change_contact_value("company", contact.company_name)
-        self.change_contact_value("address", contact.company_address)
-        self.change_contact_value("address", contact.company_address)
+        self.change_contact_value("address", contact.address)
+        self.change_contact_value("address", contact.address)
         self.change_contact_value("home", contact.home_phone)
         self.change_contact_value("mobile", contact.mobile_phone)
         self.change_contact_value("work", contact.work_phone)
@@ -153,8 +158,12 @@ class ContactHelper:
                 firstname = cells[2].text
                 lastname = cells[1].text
                 id = cells[0].find_element_by_tag_name("input").get_attribute("value")
+                address = cells[3].text
+                all_emails = cells[4].text.splitlines()
                 all_phones = cells[5].text.splitlines()
                 self.contact_cache.append(Contact(firstname=firstname, lastname=lastname, id=id,
                                                   home_phone=all_phones[0],  mobile_phone=all_phones[1],
-                                                  work_phone=all_phones[2], secondary_phone=all_phones[3]))
+                                                  work_phone=all_phones[2], secondary_phone=all_phones[3],
+                                                  email_1=all_emails[0], email_2=all_emails[1], email_3=all_emails[2],
+                                                  address=address))
         return list(self.contact_cache)

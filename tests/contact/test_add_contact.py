@@ -10,7 +10,7 @@ def test_add_contact(app):
                       nickname="PetrCompNick",
                       company_title="PetrComp_1111",
                       company_name="PetrComp",
-                      company_address="Ulica 2",
+                      address="Ulica 2",
                       home_phone="111-111-111",
                       mobile_phone="222-222-222",
                       work_phone="333-333-333",
