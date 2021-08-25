@@ -26,7 +26,8 @@ class Contact:
                  anniversary_year=None,
                  secondary_address=None,
                  secondary_phone=None,
-                 secondary_notes=None,
+                 all_phones=None,
+                 all_emails=None,
                  id=None):
         self.firstname = firstname
         self.middlename = middlename
@@ -51,7 +52,8 @@ class Contact:
         self.anniversary_year = anniversary_year
         self.secondary_address = secondary_address
         self.secondary_phone = secondary_phone
-        self.secondary_notes = secondary_notes
+        self.all_phones = all_phones
+        self.all_emails = all_emails
         self.id = id
 
     def __repr__(self):
