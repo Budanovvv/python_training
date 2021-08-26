@@ -20,14 +20,26 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
-    def delete_group_by_index(self, index):
+    def select_all_groups(self):
         wd = self.app.wd
         self.go_to_group_page()
+        for i in range(len(wd.find_elements_by_name("selected[]"))):
+            wd.find_elements_by_name("selected[]")[i].click()
+
+    def test_delete_all_groups(self):
+        self.select_all_groups()
+        self.delete_groups()
+
+    def delete_group_by_index(self, index):
+        self.go_to_group_page()
         self.select_group_by_index(index)
-        wd.find_element_by_name("delete").click()
-        # Submit group deletion
-        self.back_to_group_page()
+        self.delete_groups()
         self.group_cache = None
+
+    def delete_groups(self):
+        wd = self.app.wd
+        wd.find_element_by_name("delete").click()
+        self.back_to_group_page()
 
     def delete_first_group(self):
         self.delete_group_by_index(0)
