@@ -26,6 +26,7 @@ class Contact:
                  anniversary_year=None,
                  secondary_address=None,
                  secondary_phone=None,
+                 secondary_notes=None,
                  all_phones=None,
                  all_emails=None,
                  id=None):
@@ -52,13 +53,13 @@ class Contact:
         self.anniversary_year = anniversary_year
         self.secondary_address = secondary_address
         self.secondary_phone = secondary_phone
+        self.secondary_notes = secondary_notes
         self.all_phones = all_phones
         self.all_emails = all_emails
         self.id = id
 
     def __repr__(self):
-        return "%s, %s, %s, %s, %s, %s, %s" % (self.firstname, self.lastname, self.id, self.home_phone,
-                                               self.mobile_phone, self.work_phone, self.secondary_phone)
+        return "%s, %s, %s, %s, %s" % (self.firstname, self.lastname, self.id, self.all_phones, self.all_emails)
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id) \
