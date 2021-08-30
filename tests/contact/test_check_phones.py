@@ -27,10 +27,3 @@ def merge_phones(contact):
                                 filter(lambda x: x is not None,
                                        [contact.home_phone, contact.mobile_phone, contact.work_phone,
                                         contact.secondary_phone]))))
-
-
-
-
-
-
-

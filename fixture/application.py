@@ -7,8 +7,13 @@ from fixture.random import RandomHelper
 
 class Application:
 
-    def __init__(self):
-        self.wd = webdriver.Firefox()
+    def __init__(self, browser="firefox"):
+        if browser == "firefox":
+            self.wd = webdriver.Firefox()
+        elif browser == "chrome":
+            self.wd = webdriver.Chrome()
+        else:
+            raise ValueError("Unrecognized browser %s" % browser)
         self.wd.implicitly_wait(1)
         self.session = SessionHelper(self)
         self.contact = ContactHelper(self)
