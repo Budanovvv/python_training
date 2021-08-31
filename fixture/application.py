@@ -7,7 +7,7 @@ from fixture.random import RandomHelper
 
 class Application:
 
-    def __init__(self, browser="firefox"):
+    def __init__(self, browser, base_url):
         if browser == "firefox":
             self.wd = webdriver.Firefox()
         elif browser == "chrome":
@@ -19,9 +19,10 @@ class Application:
         self.contact = ContactHelper(self)
         self.group = GroupHelper(self)
         self.random = RandomHelper(self)
+        self.base_url = base_url
 
     def main_url(self):
-        self.wd.get("http://localhost/addressbook/index.php")
+        self.wd.get(self.base_url)
 
     def is_valid(self):
         try:
