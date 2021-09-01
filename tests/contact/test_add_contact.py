@@ -51,7 +51,7 @@ testdata = [Contact(firstname=random_name(10),
                     anniversary_month="February",
                     anniversary_year="2010",
                     secondary_address=random_string("secondary_address ", 10),
-                    secondary_phone=random_phone(10),
+                    secondary_phone=random_phone(3),
                     secondary_notes="Secondary notes")
             for i in range(5)
             ] \
