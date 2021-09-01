@@ -59,7 +59,7 @@ class Contact:
         self.id = id
 
     def __repr__(self):
-        return "%s, %s, %s, %s, %s" % (self.firstname, self.lastname, self.id, self.all_phones, self.all_emails)
+        return "%s, %s, %s, %s, %s" % (self.firstname, self.lastname, self.home_phone, self.email_1, self.id)
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id) \
