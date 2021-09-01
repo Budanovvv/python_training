@@ -15,6 +15,6 @@ def test_delete_rnd_group(app):
     assert old_groups == new_groups
 
 
-def test_delete_all_groups(app):
-    app.group.test_delete_all_groups()
-    assert app.group.count() == 0
+# def test_delete_all_groups(app):
+#     app.group.test_delete_all_groups()
+#     assert app.group.count() == 0
