@@ -2,7 +2,7 @@
 from model.group import Group
 from random import randrange
 import pytest
-from data.add_group import testdata
+from data.groups import testdata
 
 
 @pytest.mark.parametrize("group", testdata, ids=[repr(x) for x in testdata])
