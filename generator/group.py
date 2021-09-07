@@ -2,7 +2,7 @@ from model.group import Group
 import random
 import string
 import os.path
-import json
+import jsonpickle
 import getopt
 import sys
 
@@ -39,10 +39,10 @@ testdata = [Group(name="", header="", footer="")] + [
 generate_group_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", f)
 
 with open(generate_group_file, "w") as out:
-    out.write(json.dumps(testdata, default=lambda x: x.__dict__, indent=2))
+    out.write(jsonpickle.encode(testdata))
 
 
-constant = [
-    Group(name="name1", header="header1", footer="footer1"),
-    Group(name="name2", header="header2", footer="footer2")
-]
+# constant = [
+#     Group(name="name1", header="header1", footer="footer1"),
+#     Group(name="name2", header="header2", footer="footer2")
+# ]
