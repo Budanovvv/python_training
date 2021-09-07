@@ -26,7 +26,7 @@ for o, a in opts:
 def random_string(prefix, maxlen):
     symbols = string.ascii_letters + string.digits\
               # + string.punctuation + " " * 10
-    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
+    return prefix + "".join([random.choice(symbols) for i in range(1, random.randrange(maxlen))])
 
 
 testdata = [Group(name="", header="", footer="")] + [
