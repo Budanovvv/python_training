@@ -13,7 +13,8 @@ except getopt.GetoptError as err:
     sys.exit(2)
 
 n = 5
-f = "data/group.json"
+f = "data/groups.json"
+# -n 10 -f data/test.json
 
 for o, a in opts:
     if o == "-n":
@@ -39,6 +40,7 @@ testdata = [Group(name="", header="", footer="")] + [
 generate_group_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", f)
 
 with open(generate_group_file, "w") as out:
+    jsonpickle.set_encoder_options("json", indent=2)
     out.write(jsonpickle.encode(testdata))
 
 
