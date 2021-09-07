@@ -2,7 +2,6 @@ from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.contact import ContactHelper
 from fixture.group import GroupHelper
-from fixture.random import RandomHelper
 
 
 class Application:
@@ -18,7 +17,6 @@ class Application:
         self.session = SessionHelper(self)
         self.contact = ContactHelper(self)
         self.group = GroupHelper(self)
-        self.random = RandomHelper(self)
         self.base_url = base_url
 
     def main_url(self):
