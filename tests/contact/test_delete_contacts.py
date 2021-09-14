@@ -13,5 +13,5 @@ def test_delete_rnd_contact_1(app, db, check_ui):
     old_contacts.remove(rnd_contact)
     assert old_contacts == new_contacts
     if check_ui:
-        assert sorted(old_contacts, key=Group.id_or_max) == sorted(app.group.get_contact_list(), key=Group.id_or_max)
+        assert sorted(old_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
 
