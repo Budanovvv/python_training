@@ -14,5 +14,4 @@ def test_add_group(app, db, json_groups, check_ui):
             return Group(id=group_cl.id, name=group_cl.name.strip())
 
         assert sorted(app.group.get_group_list(), key=Group.id_or_max)\
-               == sorted(list(map(clean, old_groups)), key=Group.id_or_max)\
-               == sorted(list(map(clean, new_groups)), key=Group.id_or_max)
+               == sorted(list(map(clean, old_groups)), key=Group.id_or_max)
