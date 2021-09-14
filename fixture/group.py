@@ -76,7 +76,7 @@ class GroupHelper:
         self.back_to_group_page()
         self.group_cache = None
 
-    def update_first_group(self):
+    def update_first_group(self, new_group_data):
         self.update_group_by_index(0, new_group_data)
 
     def select_first_group(self):
