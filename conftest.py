@@ -39,6 +39,7 @@ def db(request):
 
     def fin():
         dbfixture.destroy()
+
     request.addfinalizer(fin)
     return dbfixture
 
@@ -48,6 +49,7 @@ def stop(request):
     def fin():
         fixture.session.ensure_logout()
         fixture.destroy()
+
     request.addfinalizer(fin)
     return fixture
 
@@ -55,6 +57,7 @@ def stop(request):
 @pytest.fixture
 def check_ui(request):
     return request.config.getoption("--check_ui")
+
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome")
@@ -79,4 +82,3 @@ def load_from_module(module):
 def load_from_json(file):
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data/%s.json" % file)) as f:
         return jsonpickle.decode(f.read())
-

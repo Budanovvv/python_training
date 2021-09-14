@@ -7,8 +7,8 @@ class Contact:
                  middlename=None,
                  lastname=None,
                  nickname=None,
-                 company_title=None,
-                 company_name=None,
+                 title=None,
+                 company=None,
                  address=None,
                  home_phone=None,
                  mobile_phone=None,
@@ -34,8 +34,8 @@ class Contact:
         self.middlename = middlename
         self.lastname = lastname
         self.nickname = nickname
-        self.company_title = company_title
-        self.company_name = company_name
+        self.company_title = title
+        self.company_name = company
         self.address = address
         self.home_phone = home_phone
         self.mobile_phone = mobile_phone
