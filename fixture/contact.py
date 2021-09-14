@@ -26,6 +26,22 @@ class ContactHelper:
         wd.find_element_by_name("update").click()
         self.contact_cache = None
 
+    def update_contact_by_id(self, id, contact):
+        wd = self.app.wd
+        self.open_contact_list()
+        self.open_contact_edit_by_id(id)
+        self.fill_form_contact(contact)
+        # Submit contact creation
+        wd.find_element_by_name("update").click()
+        self.contact_cache = None
+
+    def open_contact_edit_by_id(self, id):
+        wd = self.app.wd
+        self.open_contact_list()
+        row = wd.find_element_by_xpath("//tr[@name='entry']/td/input[@value='%s']/../.." % id)
+        cell = row.find_elements_by_tag_name('td')[7]
+        cell.find_element_by_tag_name('a').click()
+
     def open_contact_edit_by_index(self, index):
         wd = self.app.wd
         self.open_contact_list()
@@ -94,7 +110,6 @@ class ContactHelper:
     def select_contact_by_id(self, id):
         wd = self.app.wd
         wd.find_element_by_css_selector("input[value='%s']" % id).click()
-
 
     def delete_first_contact(self):
         self.delete_contact_by_index(0)
