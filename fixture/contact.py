@@ -36,11 +36,14 @@ class ContactHelper:
         self.contact_cache = None
 
     def open_contact_edit_by_id(self, id):
-        wd = self.app.wd
         self.open_contact_list()
-        row = wd.find_element_by_xpath("//tr[@name='entry']/td/input[@value='%s']/../.." % id)
+        row = self.find_checkbox_by_id(id)
         cell = row.find_elements_by_tag_name('td')[7]
         cell.find_element_by_tag_name('a').click()
+
+    def find_checkbox_by_id(self, id_contact):
+        wd = self.app.wd
+        return wd.find_element_by_css_selector("input[value='%s']" % id_contact)
 
     def open_contact_edit_by_index(self, index):
         wd = self.app.wd
@@ -192,3 +195,14 @@ class ContactHelper:
                 self.contact_cache.append(Contact(firstname=firstname, lastname=lastname, id=id,
                                                   all_emails=all_emails, all_phones=all_phones, address=address))
         return list(self.contact_cache)
+
+    def add_contact_to_the_group(self, contact_id, group_id):
+        wd = self.app.wd
+        self.open_contact_list()
+        self.find_checkbox_by_id(contact_id).click()
+        wd.find_element_by_name("to_group").click()
+        Select(wd.find_element_by_name("to_group")).select_by_value(group_id)
+        wd.find_element_by_name("add").click()
+
+
+
