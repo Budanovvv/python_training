@@ -37,13 +37,18 @@ class ContactHelper:
 
     def open_contact_edit_by_id(self, id):
         self.open_contact_list()
-        row = self.find_checkbox_by_id(id)
+        row = self.find_row_by_id(id)
         cell = row.find_elements_by_tag_name('td')[7]
         cell.find_element_by_tag_name('a').click()
 
     def find_checkbox_by_id(self, id_contact):
         wd = self.app.wd
         return wd.find_element_by_css_selector("input[value='%s']" % id_contact)
+
+    def find_row_by_id(self, id_contact):
+        wd = self.app.wd
+        row = wd.find_element_by_xpath("//tr[@name='entry']/td/input[@value='%s']/../.." % id_contact)
+        return row
 
     def open_contact_edit_by_index(self, index):
         wd = self.app.wd
